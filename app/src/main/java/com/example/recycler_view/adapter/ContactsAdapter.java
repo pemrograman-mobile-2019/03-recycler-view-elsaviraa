@@ -19,14 +19,14 @@ public class ContactsAdapter extends RecyclerView.Adapter <ContactsAdapter.ViewH
     private List<Contact> mContacts;
 
     //constructor
-    public  ContactsAdapter(List<Contact> mContacts){
-        this.mContacts = mContacts;
+    public  ContactsAdapter(List<Contact> contacts){
+        this.mContacts = contacts;
     }
 
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ContactsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         ///menghubungkan item_conctact.xml ke adapter
         Context context = viewGroup.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -44,10 +44,9 @@ public class ContactsAdapter extends RecyclerView.Adapter <ContactsAdapter.ViewH
 
         TextView textView = viewHolder.nameTextView;
         textView.setText(itemContact.getmName());
-
-        Button button = viewHolder.massageButton;
-        button.setText(itemContact.ismOnline()? "Massage" : "Offline");
-        button.setEnabled(itemContact.ismOnline());
+        Button buttonContact = viewHolder.massageButton;
+        buttonContact.setText(itemContact.ismOnline()? "Massage" : "Offline");
+        buttonContact.setEnabled(itemContact.ismOnline());
 
     }
 
@@ -58,12 +57,12 @@ public class ContactsAdapter extends RecyclerView.Adapter <ContactsAdapter.ViewH
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView nameTextView;
-        private Button massageButton ;
+        private Button massageButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            nameTextView = itemView.findViewById(R.id.contact_name);
-            massageButton = itemView.findViewById(R.id.contact_name);
+            nameTextView = (TextView) itemView.findViewById(R.id.contact_name);
+            massageButton = (Button) itemView.findViewById(R.id.message_button);
         }
     }
 
